@@ -3,7 +3,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DictionaryCommandline {
-    public static void showAllWord() {
+    DictionaryManagement d = new DictionaryManagement();
+    
+    public void showAllWord() {
         int n = 1;
         System.out.format("%-5s %-20s %-20s\n",
                 "No",
@@ -18,13 +20,12 @@ public class DictionaryCommandline {
         }
     }
 
-    public static void dictionaryBasic(){
-        DictionaryManagement d = new DictionaryManagement();
+    public void dictionaryBasic(){
         d.insertFromCommandline();
         showAllWord();
     }
+
     public void dictionaryAdvanced() throws FileNotFoundException {
-        DictionaryManagement d = new DictionaryManagement();
         d.insertFromFile();
         d.dictionaryLookup();
         showAllWord();
