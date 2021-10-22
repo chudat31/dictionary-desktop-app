@@ -18,9 +18,11 @@ public class DictionaryManagement {
         for (int i = 0; i < wordNumber; i++) {
             Word newWord = new Word();
             System.out.print("Nhập từ tiếng Anh: ");
-            newWord.setWord_target(sc.nextLine()); //vua nhap tu tieng Anh dong thoi gan cho no thuoc tinh target
+            String tumoi = sc.nextLine();
+            newWord.setWord_target(tumoi); //vua nhap tu tieng Anh dong thoi gan cho no thuoc tinh target
             System.out.print("Nhập giải thích sang tiếng Việt: ");
-            newWord.setWord_explain(sc.nextLine());//vua nhap tu giai thich dong thoi gan cho no thuoc tinh explain
+            String nghiamoi = sc.nextLine();
+            newWord.setWord_explain(nghiamoi);//vua nhap tu giai thich dong thoi gan cho no thuoc tinh explain
             Dictionary.listWord.add(newWord);//them cac tu moi vao list de duyet in ra danh sach
         }
     }
@@ -99,12 +101,12 @@ public class DictionaryManagement {
         for (Word w : Dictionary.listWord) {
             if (str.equalsIgnoreCase(w.getWord_target())) {
                 Dictionary.listWord.remove(w);
-                check = true;
+                check = false;
                 break;
             }
         }
-        if (!check) {
-            System.out.println("Từ này đã có trong từ điển.");
+        if (check) {
+            System.out.println("Từ này hiện không có trong từ điển.");
         } else {
             System.out.println("Thành công. Từ đã được xóa khỏi danh sách. ");
         }
@@ -172,8 +174,7 @@ public class DictionaryManagement {
             bufferedOutputStream.write(s.getBytes());
             bufferedOutputStream.write(System.lineSeparator().getBytes());
             for (Word w : Dictionary.listWord) {
-                String s1 = "";
-                s1 = String.format("%-5s %-20s %-20s",
+                String s1 = String.format("%-5s %-20s %-20s",
                         n,
                         w.getWord_target(),
                         w.getWord_explain());
