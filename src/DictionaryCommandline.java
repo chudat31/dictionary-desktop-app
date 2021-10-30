@@ -1,10 +1,11 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class DictionaryCommandline {
     DictionaryManagement d = new DictionaryManagement();
-    
     public void showAllWord() {
         int n = 1;
         System.out.format("%-5s %-20s %-20s\n",
@@ -46,6 +47,7 @@ public class DictionaryCommandline {
             System.out.println("Xin lỗi! Không có từ phù hợp!\n");
         }
     }
+
     public int dictionarySearcherBinary() {
         Collections.sort(Dictionary.listWord, Comparator.comparing(Word::getWord_target));
         Scanner sc = new Scanner(System.in);
@@ -66,4 +68,5 @@ public class DictionaryCommandline {
         }
         return -1;
     }
+
 }
