@@ -46,4 +46,24 @@ public class DictionaryCommandline {
             System.out.println("Xin lỗi! Không có từ phù hợp!\n");
         }
     }
+    public int dictionarySearcherBinary() {
+        Collections.sort(Dictionary.listWord, Comparator.comparing(Word::getWord_target));
+        Scanner sc = new Scanner(System.in);
+        String wordToSearch = sc.nextLine();
+        int l = 0;
+        int r = Dictionary.listWord.size() - 1;
+        while (r >= l) {
+            int mid = ( l + r - 1 ) / 2;
+            if(Dictionary.listWord.get(mid).getWord_target().compareTo(wordToSearch)==0) {
+                return mid;
+            }
+            else if(Dictionary.listWord.get(mid).getWord_target().compareTo(wordToSearch) >= 0) {
+                r = mid - 1;
+            }
+            else {
+                l = mid + 1;
+            }
+        }
+        return -1;
+    }
 }
